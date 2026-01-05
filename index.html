@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-<title>Saap-Seedi GBL — Cyber Security Techniques</title>
+<title>Saap-Seedi GBL — Two Screen</title>
 <style>
   :root{
     --bg1:#070A12;
@@ -20,12 +20,14 @@
     --shadow: 0 18px 50px rgba(0,0,0,.45);
   }
   *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(1200px 800px at 30% 20%, var(--bg2), var(--bg1));color:var(--ink);}
+  html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:radial-gradient(1200px 800px at 30% 20%, var(--bg2), var(--bg1));color:var(--ink);}
 
   .app{max-width:1100px;margin:0 auto;padding:14px;min-height:100%;display:flex;flex-direction:column;gap:12px;}
   header{
     display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
-    padding:10px 12px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    padding:10px 12px;border:1px solid rgba(255,255,255,.08);
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
     border-radius:16px;box-shadow:var(--shadow);
   }
   .brand{display:flex;align-items:center;gap:10px}
@@ -52,14 +54,14 @@
   }
   .dot{width:8px;height:8px;border-radius:50%;}
   .dot.g{background:var(--good)}
-  .dot.p{background:var(--accent2)}
   .dot.c{background:var(--accent)}
+  .dot.p{background:var(--accent2)}
   .btn{
     border:0;border-radius:12px;padding:10px 12px;
     color:var(--ink);background:linear-gradient(180deg, rgba(93,214,255,.22), rgba(93,214,255,.08));
     border:1px solid rgba(93,214,255,.35);
     box-shadow:0 10px 26px rgba(93,214,255,.12);
-    cursor:pointer;font-weight:700;letter-spacing:.2px;
+    cursor:pointer;font-weight:800;letter-spacing:.2px;
   }
   .btn:disabled{opacity:.5;cursor:not-allowed}
   .btn.secondary{
@@ -72,9 +74,8 @@
     display:grid;grid-template-columns: 1.25fr .75fr;gap:12px;align-items:stretch;flex:1;
   }
   @media (max-width: 900px){
-    .main{grid-template-columns:1fr; }
+    .main{grid-template-columns:1fr;}
   }
-
   .panel{
     border-radius:18px;border:1px solid rgba(255,255,255,.08);
     background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
@@ -82,11 +83,9 @@
     overflow:hidden;
   }
 
-  /* Board panel */
+  /* === GAME VIEW === */
   .boardWrap{padding:10px;display:flex;flex-direction:column;gap:10px;}
-  .boardTop{
-    display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
-  }
+  .boardTop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
   .turnTag{
     display:flex;align-items:center;gap:8px;
     padding:8px 10px;border-radius:999px;
@@ -94,26 +93,48 @@
     font-size:12px;color:var(--muted);
   }
   .turnTag b{color:var(--ink)}
+  .diceArea{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .dice{
+    width:62px;height:62px;border-radius:16px;
+    border:1px solid rgba(255,255,255,.16);
+    background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+    display:grid;place-items:center;
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+  }
+  .dice .face{font-weight:1000;font-size:22px;color:var(--ink);text-shadow:0 8px 18px rgba(0,0,0,.35);}
+  .dice.rolling{animation:diceRoll .85s ease-in-out;}
+  @keyframes diceRoll{
+    0%{transform:rotate(0deg) scale(1)}
+    25%{transform:rotate(18deg) scale(1.03)}
+    55%{transform:rotate(-22deg) scale(.98)}
+    85%{transform:rotate(12deg) scale(1.02)}
+    100%{transform:rotate(0deg) scale(1)}
+  }
+
+  /* A square board area that fits phones */
   .canvasHolder{
     position:relative;border-radius:16px;overflow:hidden;
     border:1px solid rgba(255,255,255,.08);
     background:radial-gradient(900px 700px at 20% 10%, rgba(93,214,255,.12), rgba(0,0,0,.25));
-    min-height:340px;
+    width:100%;
+    aspect-ratio: 1 / 1;
+    min-height: 320px;
   }
   canvas{display:block;width:100%;height:100%}
+
   .overlayToast{
-    position:absolute;left:50%;top:16px;transform:translateX(-50%);
+    position:absolute;left:50%;top:14px;transform:translateX(-50%);
     padding:10px 14px;border-radius:999px;
     background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.14);
-    color:var(--ink);font-weight:800;font-size:13px;letter-spacing:.2px;
+    color:var(--ink);font-weight:900;font-size:13px;
     box-shadow:0 14px 35px rgba(0,0,0,.35);
     opacity:0;pointer-events:none;
   }
-  .overlayToast.show{animation:toastPop .7s ease forwards;}
+  .overlayToast.show{animation:toastPop .85s ease forwards;}
   @keyframes toastPop{
     0%{opacity:0;transform:translateX(-50%) translateY(-8px) scale(.96)}
     25%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
-    85%{opacity:1}
+    80%{opacity:1}
     100%{opacity:0;transform:translateX(-50%) translateY(-6px) scale(.98)}
   }
 
@@ -130,83 +151,51 @@
   .row b{color:var(--ink)}
   .tiny{font-size:11px;color:rgba(234,242,255,.75);line-height:1.35}
   .kbd{
-    font-weight:800;color:var(--ink);
+    font-weight:900;color:var(--ink);
     padding:1px 7px;border-radius:8px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);
   }
 
-  /* Dice */
-  .diceArea{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-  .dice{
-    width:62px;height:62px;border-radius:16px;
-    border:1px solid rgba(255,255,255,.16);
-    background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
-    position:relative;display:grid;place-items:center;
-    box-shadow:0 12px 30px rgba(0,0,0,.25);
-  }
-  .dice .face{
-    font-weight:1000;font-size:22px;letter-spacing:.5px;
-    color:var(--ink);
-    text-shadow:0 8px 18px rgba(0,0,0,.35);
-  }
-  .dice.rolling{animation:diceRoll .85s ease-in-out;}
-  @keyframes diceRoll{
-    0%{transform:rotate(0deg) scale(1)}
-    25%{transform:rotate(18deg) scale(1.03)}
-    55%{transform:rotate(-22deg) scale(.98)}
-    85%{transform:rotate(12deg) scale(1.02)}
-    100%{transform:rotate(0deg) scale(1)}
-  }
-
-  /* MCQ screen */
-  .mcqScreen{
+  /* === TWO SCREEN FLIP (MCQ VIEW) === */
+  .screen{
     position:fixed;inset:0;display:none;align-items:center;justify-content:center;
-    background:radial-gradient(900px 700px at 30% 20%, rgba(93,214,255,.16), rgba(0,0,0,.85));
-    padding:14px;
-    z-index:50;
+    padding:14px;z-index:100;
+    background:radial-gradient(900px 700px at 30% 20%, rgba(93,214,255,.16), rgba(0,0,0,.86));
   }
-  .mcqScreen.show{display:flex}
+  .screen.show{display:flex}
   .mcqCard{
-    width:min(860px, 100%); border-radius:20px; padding:14px;
+    width:min(900px,100%); border-radius:20px; padding:14px;
     border:1px solid rgba(255,255,255,.12);
     background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.25));
     box-shadow:0 22px 70px rgba(0,0,0,.55);
   }
   .mcqHead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap}
   .badge{
-    padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900;
+    padding:6px 10px;border-radius:999px;font-size:12px;font-weight:1000;
     border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.25);color:var(--muted);
   }
-  .qtext{
-    margin:10px 0 10px;font-size:16px;font-weight:900;line-height:1.25;
-  }
+  .qtext{margin:10px 0 10px;font-size:16px;font-weight:1000;line-height:1.25;}
   .choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  @media (max-width: 700px){
-    .choices{grid-template-columns:1fr}
-    .qtext{font-size:15px}
-  }
+  @media (max-width: 700px){ .choices{grid-template-columns:1fr} .qtext{font-size:15px} }
   .choice{
     text-align:left;cursor:pointer;
-    padding:12px 12px;border-radius:16px;
+    padding:12px;border-radius:16px;
     border:1px solid rgba(255,255,255,.12);
     background:rgba(0,0,0,.22);
-    color:var(--ink);font-weight:800;font-size:13px;
+    color:var(--ink);font-weight:900;font-size:13px;
     transition:transform .12s ease, border-color .12s ease, background .12s ease;
   }
   .choice:hover{transform:translateY(-1px);border-color:rgba(93,214,255,.35);background:rgba(93,214,255,.08)}
-  .choice small{display:block;color:var(--muted);font-weight:700;margin-top:4px}
   .choice.correct{border-color:rgba(52,211,153,.55);background:rgba(52,211,153,.10)}
   .choice.wrong{border-color:rgba(251,113,133,.55);background:rgba(251,113,133,.10)}
   .mcqFoot{margin-top:10px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-  .feedback{
-    min-height:18px;color:rgba(234,242,255,.88);font-size:12px;line-height:1.35;
-  }
+  .feedback{min-height:18px;color:rgba(234,242,255,.88);font-size:12px;line-height:1.35;}
   .bigPop{
-    position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:60;
+    position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:150;
     pointer-events:none;
   }
   .bigPop.show{display:flex;animation:popIn .55s ease forwards;}
   .bigPop .msg{
-    padding:18px 22px;border-radius:22px;font-weight:1000;font-size:34px;letter-spacing:.3px;
+    padding:18px 22px;border-radius:22px;font-weight:1100;font-size:34px;
     border:1px solid rgba(255,255,255,.14);
     background:rgba(0,0,0,.45);
     box-shadow:0 22px 70px rgba(0,0,0,.55);
@@ -218,7 +207,6 @@
     100%{opacity:0;transform:scale(.98)}
   }
 
-  /* Tiny shake for wrong answer */
   .shake{animation:shake .25s ease-in-out}
   @keyframes shake{
     0%{transform:translateX(0)}
@@ -236,14 +224,14 @@
       <div class="logo" aria-hidden="true"></div>
       <div class="title">
         <b>Saap-Seedi GBL (Learner vs Computer)</b>
-        <span>Snakes & Ladders + MCQs from “Cyber Security Techniques”</span>
+        <span>Two-screen: MCQ → Board → Animation</span>
       </div>
     </div>
     <div class="hud">
-      <div class="pill"><span class="dot g"></span> Learner: <b id="sLearner">0</b></div>
-      <div class="pill"><span class="dot c"></span> Computer: <b id="sComp">0</b></div>
+      <div class="pill"><span class="dot g"></span> Learner: <b id="pLearner">1</b></div>
+      <div class="pill"><span class="dot c"></span> Computer: <b id="pComp">1</b></div>
       <div class="pill"><span class="dot p"></span> Correct: <b id="sCorrect">0</b> / <b id="sTotal">0</b></div>
-      <button class="btn secondary" id="btnReset" title="Start a fresh match">Reset</button>
+      <button class="btn secondary" id="btnReset">Reset</button>
     </div>
   </header>
 
@@ -251,12 +239,9 @@
     <section class="panel boardWrap">
       <div class="boardTop">
         <div class="turnTag" id="turnTag"><b>Turn:</b> Learner</div>
-
         <div class="diceArea">
-          <div class="dice" id="diceBox" aria-label="Dice">
-            <div class="face" id="diceFace">—</div>
-          </div>
-          <button class="btn" id="btnRoll">Roll Dice</button>
+          <div class="dice" id="diceBox"><div class="face" id="diceFace">—</div></div>
+          <button class="btn" id="btnRoll">Start Turn</button>
         </div>
       </div>
 
@@ -268,53 +253,46 @@
 
     <aside class="panel side">
       <div class="card">
-        <h3>How learning controls the game</h3>
-        <div class="tiny">
-          <div class="rows">
-            <div class="row"><span><span class="kbd">Dice</span> decides steps</span><b>Luck</b></div>
-            <div class="row"><span><span class="kbd">Ladder</span> asks bonus MCQ</span><b>Correct = climb</b></div>
-            <div class="row"><span><span class="kbd">Snake</span> asks save MCQ</span><b>Correct = avoid</b></div>
-          </div>
-          <div style="margin-top:8px;color:rgba(234,242,255,.78)">
-            The game flips between MCQ screen and the board so the board fits well on phones.
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Controls</h3>
-        <div class="tiny">
-          <div class="row"><span>Roll</span><b>Tap “Roll Dice”</b></div>
-          <div class="row"><span>Answer MCQ</span><b>Tap an option</b></div>
+        <h3>Rules</h3>
+        <div class="tiny rows">
+          <div class="row"><span><span class="kbd">Every turn</span></span><b>1 MCQ</b></div>
+          <div class="row"><span>Correct MCQ</span><b>Roll + climb ladders + avoid snakes</b></div>
+          <div class="row"><span>Wrong MCQ</span><b>Roll still happens, but ladders disabled and snakes bite</b></div>
           <div class="row"><span>Finish rule</span><b>Exact 100</b></div>
-          <div class="row"><span>Computer accuracy</span><b id="accTxt">65%</b></div>
         </div>
       </div>
 
       <div class="card">
         <h3>Status</h3>
-        <div class="rows tiny">
-          <div class="row"><span>Last move</span><b id="lastMove">—</b></div>
+        <div class="tiny rows">
+          <div class="row"><span>Last action</span><b id="lastAction">—</b></div>
           <div class="row"><span>Special</span><b id="lastSpecial">—</b></div>
-          <div class="row"><span>MCQ context</span><b id="lastCtx">—</b></div>
+          <div class="row"><span>MCQ result</span><b id="lastMCQ">—</b></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Computer</h3>
+        <div class="tiny rows">
+          <div class="row"><span>Accuracy</span><b id="accTxt">65%</b></div>
         </div>
       </div>
     </aside>
   </div>
 </div>
 
-<!-- MCQ Overlay -->
-<div class="mcqScreen" id="mcqScreen" role="dialog" aria-modal="true">
+<!-- MCQ SCREEN -->
+<div class="screen" id="mcqScreen" role="dialog" aria-modal="true">
   <div class="mcqCard" id="mcqCard">
     <div class="mcqHead">
-      <div class="badge" id="mcqBadge">MCQ</div>
+      <div class="badge" id="mcqBadge">Turn MCQ</div>
       <div class="badge" id="mcqPlayer">Player: Learner</div>
     </div>
     <div class="qtext" id="qtext">Question</div>
     <div class="choices" id="choices"></div>
     <div class="mcqFoot">
       <div class="feedback" id="feedback"></div>
-      <button class="btn secondary" id="btnCloseMCQ" style="display:none">Continue</button>
+      <button class="btn secondary" id="btnContinue" style="display:none">Continue</button>
     </div>
   </div>
 </div>
@@ -324,8 +302,11 @@
 
 <script>
 /* =========================
-   MCQs derived from the uploaded chapter
-   (Authentication, Encryption, Digital Signatures, Antivirus, Firewall, Steganography)
+   NOTE (important honesty):
+   These MCQs are currently hardcoded based on common “Cyber Security Techniques”
+   concepts (auth, encryption, digital signatures, firewall, steganography).
+   If you want them extracted strictly from your DOCX wording, tell me and I will
+   regenerate the bank after parsing your file.
    ========================= */
 
 const QUESTION_BANK = [
@@ -334,209 +315,97 @@ const QUESTION_BANK = [
     "Identifying a user and verifying they are who they claim to be",
     "Encrypting data before sending",
     "Scanning for viruses"
-  ], correct:1, fb:"Authentication verifies identity (for example, username + password, OTP, biometrics)."},
+  ], correct:1, fb:"Authentication verifies identity (password/OTP/biometrics)."},
   {id:"Q2", q:"OTP stands for:", a:[
     "One Time Password",
     "Open Transfer Protocol",
     "Online Trusted Password",
     "One Token Process"
-  ], correct:0, fb:"OTP is typically sent by SMS/email and is valid for one-time use."},
-  {id:"Q3", q:"Two-factor authentication (2FA) typically requires:", a:[
-    "Two usernames",
-    "Two different types of evidence for identity",
-    "Two computers",
-    "Two email addresses"
-  ], correct:1, fb:"2FA combines factors like password + OTP/biometric/physical token."},
-  {id:"Q4", q:"Authorization refers to:", a:[
+  ], correct:0, fb:"OTP is valid for one-time use."},
+  {id:"Q3", q:"Authorization refers to:", a:[
     "Verifying who a user is",
     "Converting plaintext into ciphertext",
-    "Giving access to resources based on credentials/rights",
-    "Detecting worms and trojans"
-  ], correct:2, fb:"Authentication verifies identity; authorization grants access based on roles/rights."},
-  {id:"Q5", q:"A strong password policy commonly recommends:", a:[
-    "Short passwords for easy recall",
-    "More than 12 characters with mixed character types",
-    "Only lowercase letters",
-    "Changing password once in 5 years"
-  ], correct:1, fb:"Longer + mixed characters reduces guessability and brute-force success."},
-
-  {id:"Q6", q:"Encryption is best described as:", a:[
+    "Giving access to resources based on rights/roles",
+    "Detecting malware"
+  ], correct:2, fb:"Authorization is access control after authentication."},
+  {id:"Q4", q:"Encryption is best described as:", a:[
     "Hiding messages inside images only",
-    "Locking data by converting it into unreadable form using algorithms",
+    "Converting data into unreadable form using a key and algorithm",
     "Blocking network ports",
-    "Validating a document’s content"
-  ], correct:1, fb:"Encryption converts readable data to coded form; decryption restores it using a key."},
-  {id:"Q7", q:"Decryption is the process of:", a:[
-    "Converting coded data back to original text using a key",
-    "Sending the key via SMS",
-    "Dropping network packets",
-    "Checking a firewall rule"
-  ], correct:0, fb:"Decryption reverses encryption when the correct key is available."},
-  {id:"Q8", q:"If the same key is used to encrypt and decrypt, it is called:", a:[
+    "Validating a document’s format"
+  ], correct:1, fb:"Encryption protects confidentiality; decryption reverses it."},
+  {id:"Q5", q:"If the same key is used to encrypt and decrypt, it is called:", a:[
     "Asymmetric encryption",
-    "Symmetric key encryption",
-    "Public key encryption only",
-    "Token encryption"
-  ], correct:1, fb:"Symmetric encryption uses one shared key for both locking and unlocking."},
-  {id:"Q9", q:"In asymmetric encryption, which statement is correct?", a:[
-    "Public and private keys are the same",
-    "Encryption and decryption keys are different",
-    "Only private keys are shared publicly",
-    "No keys are required"
-  ], correct:1, fb:"Asymmetric uses a public key (shared) and a private key (kept secret)."},
-  {id:"Q10", q:"If A sends a secret message to B using asymmetric encryption, A typically encrypts using:", a:[
-    "A’s private key",
-    "A’s public key",
-    "B’s public key",
-    "B’s private key"
-  ], correct:2, fb:"Encrypt with receiver’s public key; receiver decrypts using their private key."},
-
-  {id:"Q11", q:"Digital signatures mainly help with:", a:[
-    "Data validation and sender authentication",
-    "Virus removal",
-    "Network address translation",
-    "Hiding IP addresses only"
-  ], correct:0, fb:"Digital signatures support integrity (no tampering) and authenticity (who signed)."},
-  {id:"Q12", q:"A digital signature is created by encrypting data with:", a:[
+    "Symmetric encryption",
+    "Public-only encryption",
+    "No-key encryption"
+  ], correct:1, fb:"Symmetric uses one shared secret key."},
+  {id:"Q6", q:"A digital signature is created using:", a:[
     "Receiver’s public key",
     "Sender’s private key",
     "Receiver’s private key",
     "Sender’s public key"
-  ], correct:1, fb:"The receiver verifies by decrypting signature using sender’s public key."},
-  {id:"Q13", q:"If a message is tampered during transmission, digital signatures help because:", a:[
-    "The receiver can detect mismatch during verification",
-    "The hacker can re-sign easily",
-    "The message becomes automatically encrypted",
-    "The firewall blocks all tampering"
-  ], correct:0, fb:"Verification fails if content changes; attacker cannot re-sign without sender’s private key."},
-  {id:"Q14", q:"Digital signatures also help prevent later denial of a transaction. This is often called:", a:[
-    "Compression",
-    "Non-repudiation",
-    "Packet filtering",
-    "Steganalysis"
-  ], correct:1, fb:"Non-repudiation means the signer cannot easily deny signing later."},
-
-  {id:"Q15", q:"Antivirus software is mainly designed to:", a:[
-    "Encrypt files before sending",
-    "Detect and remove malicious code like viruses/worms/trojans",
-    "Replace strong passwords",
-    "Act as a proxy server"
-  ], correct:1, fb:"Antivirus prevents and removes malware and typically updates signatures frequently."},
-  {id:"Q16", q:"A firewall is best described as:", a:[
+  ], correct:1, fb:"Verification is done using sender’s public key."},
+  {id:"Q7", q:"A firewall is best described as:", a:[
     "A tool to hide messages in images",
-    "A network security system that controls incoming/outgoing traffic using rules",
-    "A password generator only",
-    "A document validation tool"
-  ], correct:1, fb:"Firewalls monitor and control traffic between trusted and untrusted networks."},
-  {id:"Q17", q:"Network layer firewalls (packet filters) mainly check:", a:[
-    "Only the font style in emails",
-    "Packet headers and rule matching at lower TCP/IP layers",
-    "Audio noise patterns",
-    "Only application window titles"
-  ], correct:1, fb:"Packet filters apply rules using fields like IP/port/protocol/state."},
-  {id:"Q18", q:"Stateful firewall differs from stateless because it:", a:[
-    "Cannot filter traffic",
-    "Maintains records of active sessions to speed processing",
-    "Only works for emails",
-    "Always blocks all traffic"
-  ], correct:1, fb:"Stateful uses connection state; stateless checks each packet independently."},
-  {id:"Q19", q:"Application-layer firewalls typically filter:", a:[
-    "On a per-process/application basis",
-    "Only on a per-country basis",
-    "Only based on image pixels",
-    "Only based on keyboard speed"
-  ], correct:0, fb:"Application firewalls can allow/block traffic depending on the specific app/process."},
-  {id:"Q20", q:"A proxy server can act like a firewall by:", a:[
-    "Responding to requests on behalf of a network user and blocking others",
-    "Changing private keys into public keys",
-    "Removing viruses from USB drives only",
-    "Replacing the operating system"
-  ], correct:0, fb:"Proxy gateways can mediate requests and enforce filtering for specific applications."},
-  {id:"Q21", q:"NAT (Network Address Translation) in firewalls is commonly used to:", a:[
-    "Increase monitor brightness",
-    "Hide internal private addresses and reduce public IP needs",
-    "Create digital signatures",
-    "Store OTP messages"
-  ], correct:1, fb:"NAT maps private internal addresses to public addresses and can obscure internal topology."},
-  {id:"Q22", q:"Software-based personal firewalls are often valuable because they:", a:[
-    "Only run on routers",
-    "Can identify which applications are creating network risks",
-    "Never need updates",
-    "Replace all encryption"
-  ], correct:1, fb:"They can alert when a new/malicious program tries to access the network."},
-  {id:"Q23", q:"Hardware firewalls are commonly found in:", a:[
-    "Broadband routers and firewall appliances",
-    "Only smartphone cameras",
-    "Only spreadsheets",
-    "Only PDF readers"
-  ], correct:0, fb:"Hardware firewalls are often built into routers and protect multiple devices on a LAN."},
-
-  {id:"Q24", q:"Steganography is the technique of:", a:[
+    "A system that controls incoming/outgoing traffic using rules",
+    "A password manager only",
+    "A file compressor"
+  ], correct:1, fb:"Firewalls enforce network security policies."},
+  {id:"Q8", q:"Steganography is the technique of:", a:[
     "Encrypting with public/private keys",
-    "Hiding secret messages inside media so the message is not obvious",
+    "Hiding secret data inside media so it’s not obvious",
     "Dropping suspicious packets",
     "Scanning hard disks for malware"
-  ], correct:1, fb:"Steganography hides existence of the message (often in image/audio/video)."},
-  {id:"Q25", q:"In image steganography, one common approach is altering:", a:[
-    "Most significant bits so changes are obvious",
-    "Least significant bits so changes are hard to notice",
-    "Only the file name",
-    "Only the screen resolution"
-  ], correct:1, fb:"LSB changes can be visually subtle, especially in high-resolution images."},
+  ], correct:1, fb:"Steganography hides the existence of the message."},
 ];
-
-/* =========================
-   Board setup (10x10, 1..100 serpentine)
-   ========================= */
 
 const JUMPS = {
   // Ladders
-  3: 22,
-  5: 8,
-  11: 26,
-  20: 29,
-  27: 56,
-  36: 44,
-  51: 67,
-  71: 92,
-  80: 99,
+  3:22, 5:8, 11:26, 20:29, 27:56, 36:44, 51:67, 71:92, 80:99,
   // Snakes
-  17: 4,
-  19: 7,
-  21: 9,
-  43: 34,
-  49: 30,
-  62: 18,
-  64: 60,
-  87: 24,
-  95: 75,
-  98: 79
+  17:4, 19:7, 21:9, 43:34, 49:30, 62:18, 64:60, 87:24, 95:75, 98:79
 };
 
-const SAFE_SQUARES = new Set([1, 25, 50, 75, 100]); // simple safe squares for spark burst
+const SAFE_SQUARES = new Set([1,25,50,75,100]);
 
 /* =========================
-   Game state
+   Precompute paths (fix flicker)
+   ========================= */
+const LINKS = []; // {from,to,type, ctrl?}
+(function buildLinks(){
+  for(const [kStr,v] of Object.entries(JUMPS)){
+    const from = Number(kStr);
+    const to = v;
+    const type = to > from ? "ladder" : "snake";
+    // Precompute a stable control point for snakes
+    const seed = (from*97 + to*131) % 1000;
+    const wiggle = (seed/1000 - 0.5) * 36; // -18..18
+    LINKS.push({from,to,type,wiggle});
+  }
+})();
+
+/* =========================
+   State
    ========================= */
 const state = {
   players: [
-    { name:"Learner", pos:1, color:"#34d399", trail:[], score:0 },
-    { name:"Computer", pos:1, color:"#5dd6ff", trail:[], score:0 }
+    { name:"Learner", pos:1, color:"#34d399", trail:[] },
+    { name:"Computer", pos:1, color:"#5dd6ff", trail:[] }
   ],
   turn: 0,
   busy: false,
   exactFinish: true,
-  lastMove: "—",
-  lastSpecial: "—",
-  lastCtx: "—",
+  computerAccuracy: 0.65,
+  usedQ: new Set(),
   correct: 0,
   total: 0,
-  computerAccuracy: 0.65,
-  usedQ: new Set()
+  // per-turn MCQ result affects ladder/snake outcome
+  turnMCQCorrect: null,
 };
 
 /* =========================
-   DOM hooks
+   DOM
    ========================= */
 const canvas = document.getElementById("board");
 const holder = document.getElementById("canvasHolder");
@@ -544,37 +413,38 @@ const ctx = canvas.getContext("2d");
 
 const btnRoll = document.getElementById("btnRoll");
 const btnReset = document.getElementById("btnReset");
+
 const diceBox = document.getElementById("diceBox");
 const diceFace = document.getElementById("diceFace");
 const turnTag = document.getElementById("turnTag");
 
-const sLearner = document.getElementById("sLearner");
-const sComp = document.getElementById("sComp");
+const pLearner = document.getElementById("pLearner");
+const pComp = document.getElementById("pComp");
 const sCorrect = document.getElementById("sCorrect");
 const sTotal = document.getElementById("sTotal");
-const lastMove = document.getElementById("lastMove");
+
+const lastAction = document.getElementById("lastAction");
 const lastSpecial = document.getElementById("lastSpecial");
-const lastCtx = document.getElementById("lastCtx");
-const accTxt = document.getElementById("accTxt");
+const lastMCQ = document.getElementById("lastMCQ");
+document.getElementById("accTxt").textContent = Math.round(state.computerAccuracy*100) + "%";
 
 const toast = document.getElementById("toast");
 
+// MCQ screen
 const mcqScreen = document.getElementById("mcqScreen");
-const mcqBadge = document.getElementById("mcqBadge");
+const mcqCard = document.getElementById("mcqCard");
 const mcqPlayer = document.getElementById("mcqPlayer");
 const qtext = document.getElementById("qtext");
 const choices = document.getElementById("choices");
 const feedback = document.getElementById("feedback");
-const btnCloseMCQ = document.getElementById("btnCloseMCQ");
+const btnContinue = document.getElementById("btnContinue");
 
+// big popup
 const bigPop = document.getElementById("bigPop");
 const bigMsg = document.getElementById("bigMsg");
-const mcqCard = document.getElementById("mcqCard");
-
-accTxt.textContent = Math.round(state.computerAccuracy*100) + "%";
 
 /* =========================
-   Utilities
+   Utils
    ========================= */
 const sleep = (ms)=> new Promise(r=>setTimeout(r, ms));
 const randInt = (a,b)=> Math.floor(Math.random()*(b-a+1))+a;
@@ -582,7 +452,7 @@ const randInt = (a,b)=> Math.floor(Math.random()*(b-a+1))+a;
 function showToast(text){
   toast.textContent = text;
   toast.classList.remove("show");
-  void toast.offsetWidth; // reflow
+  void toast.offsetWidth;
   toast.classList.add("show");
 }
 function showBig(text, good=true){
@@ -594,35 +464,58 @@ function showBig(text, good=true){
   bigPop.classList.add("show");
 }
 
+function openMCQScreen(playerName){
+  mcqPlayer.textContent = "Player: " + playerName;
+  feedback.textContent = "";
+  choices.innerHTML = "";
+  btnContinue.style.display = "none";
+  mcqScreen.classList.add("show");
+  mcqCard.classList.remove("shake");
+}
+function closeMCQScreen(){
+  mcqScreen.classList.remove("show");
+}
+
+function pickWrongIndex(correctIdx){
+  const picks = [0,1,2,3].filter(i=>i!==correctIdx);
+  return picks[randInt(0,picks.length-1)];
+}
+function pickQuestion(){
+  const available = QUESTION_BANK.filter(q => !state.usedQ.has(q.id));
+  const pool = available.length ? available : QUESTION_BANK;
+  const q = pool[randInt(0, pool.length-1)];
+  state.usedQ.add(q.id);
+  return q;
+}
+
 /* =========================
    Board geometry
    ========================= */
-let W=0,H=0, pad=14, grid=10, cell=0;
+let W=0,H=0,pad=14,grid=10,cell=0;
 
 function resize(){
   const rect = holder.getBoundingClientRect();
   W = Math.floor(rect.width);
-  H = Math.max(360, Math.floor(rect.height));
+  H = Math.floor(rect.height);
   canvas.width = W * devicePixelRatio;
   canvas.height = H * devicePixelRatio;
   canvas.style.width = W+"px";
   canvas.style.height = H+"px";
   ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
   cell = Math.floor((Math.min(W,H) - pad*2)/grid);
+  render(); // draw once after resize
 }
-window.addEventListener("resize", ()=>{ resize(); render(); });
+window.addEventListener("resize", resize);
 
 function squareToRC(n){
-  // n: 1..100
   const idx = n-1;
-  const rFromBottom = Math.floor(idx/10); // 0..9
-  const row = 9 - rFromBottom; // 9..0 top
+  const rFromBottom = Math.floor(idx/10);
+  const row = 9 - rFromBottom;
   const colInRow = idx % 10;
-  const isLeftToRight = (rFromBottom % 2 === 0);
-  const col = isLeftToRight ? colInRow : (9-colInRow);
-  return {row, col};
+  const isL2R = (rFromBottom % 2 === 0);
+  const col = isL2R ? colInRow : (9-colInRow);
+  return {row,col};
 }
-
 function centerOfSquare(n){
   const {row,col} = squareToRC(n);
   const x = pad + col*cell + cell/2;
@@ -631,55 +524,53 @@ function centerOfSquare(n){
 }
 
 /* =========================
-   Particles (trail, sparks, confetti)
+   Particles
    ========================= */
 const particles = [];
-function addSpark(x,y, count=18){
+function addSpark(x,y,count=16){
   for(let i=0;i<count;i++){
-    particles.push({
-      x,y, vx:(Math.random()*2-1)*2.4, vy:(Math.random()*2-1)*2.4,
-      life: 520 + Math.random()*240,
-      t:0,
-      kind:"spark"
-    });
+    particles.push({x,y,vx:(Math.random()*2-1)*2.2,vy:(Math.random()*2-1)*2.2,t:0,life:550,kind:"spark"});
   }
 }
-function addConfetti(x,y, count=70){
+function addConfetti(x,y,count=90){
   for(let i=0;i<count;i++){
-    particles.push({
-      x,y, vx:(Math.random()*2-1)*3.0, vy:(Math.random()*-1)*3.6 - 0.8,
-      life: 950 + Math.random()*450,
-      t:0,
-      kind:"confetti"
-    });
+    particles.push({x,y,vx:(Math.random()*2-1)*3.0,vy:(Math.random()*-1)*3.6-0.8,t:0,life:1100,kind:"confetti"});
   }
 }
 
+let raf = null;
 let lastFrame = performance.now();
-function tick(now){
-  const dt = now - lastFrame;
-  lastFrame = now;
-  // update particles
-  for(let i=particles.length-1;i>=0;i--){
-    const p = particles[i];
-    p.t += dt;
-    if(p.kind==="confetti"){
-      p.vy += 0.012*dt; // gravity
-      p.vx *= 0.998;
-    }else{
-      p.vx *= 0.995;
-      p.vy *= 0.995;
+function startRenderLoop(){
+  if(raf) return;
+  lastFrame = performance.now();
+  const loop = (now)=>{
+    const dt = now - lastFrame;
+    lastFrame = now;
+
+    // update particles (only thing that needs continuous render)
+    for(let i=particles.length-1;i>=0;i--){
+      const p = particles[i];
+      p.t += dt;
+      if(p.kind==="confetti"){ p.vy += 0.012*dt; p.vx *= 0.998; }
+      else { p.vx *= 0.995; p.vy *= 0.995; }
+      p.x += p.vx; p.y += p.vy;
+      if(p.t > p.life) particles.splice(i,1);
     }
-    p.x += p.vx;
-    p.y += p.vy;
-    if(p.t > p.life) particles.splice(i,1);
-  }
-  render();
-  requestAnimationFrame(tick);
+
+    render();
+
+    // stop loop when no particles and not busy animating
+    if(particles.length===0 && !state.busy){
+      raf = null;
+      return;
+    }
+    raf = requestAnimationFrame(loop);
+  };
+  raf = requestAnimationFrame(loop);
 }
 
 /* =========================
-   Drawing helpers
+   Drawing
    ========================= */
 function roundedRect(x,y,w,h,r){
   ctx.beginPath();
@@ -692,45 +583,30 @@ function roundedRect(x,y,w,h,r){
 }
 
 function drawBoard(){
-  // background glow
   ctx.clearRect(0,0,W,H);
-
-  // subtle grid background
-  ctx.save();
-  ctx.globalAlpha = 0.9;
-
-  // board area
   const boardSize = cell*grid;
   const bx = pad, by = pad;
-  const br = 18;
 
-  // board plate
   ctx.fillStyle = "rgba(0,0,0,.20)";
   ctx.strokeStyle = "rgba(255,255,255,.10)";
   ctx.lineWidth = 1;
-  roundedRect(bx-6, by-6, boardSize+12, boardSize+12, br);
-  ctx.fill();
-  ctx.stroke();
+  roundedRect(bx-6, by-6, boardSize+12, boardSize+12, 18);
+  ctx.fill(); ctx.stroke();
 
-  // cells
   for(let r=0;r<grid;r++){
     for(let c=0;c<grid;c++){
       const x = bx + c*cell;
       const y = by + r*cell;
       const isAlt = (r+c)%2===0;
-      const g = isAlt ? "rgba(93,214,255,.06)" : "rgba(167,139,250,.05)";
-      ctx.fillStyle = g;
+      ctx.fillStyle = isAlt ? "rgba(93,214,255,.06)" : "rgba(167,139,250,.05)";
       ctx.strokeStyle = "rgba(255,255,255,.08)";
-      ctx.lineWidth = 1;
       roundedRect(x+2,y+2,cell-4,cell-4,12);
-      ctx.fill();
-      ctx.stroke();
+      ctx.fill(); ctx.stroke();
     }
   }
 
-  // numbers (lightweight)
   ctx.fillStyle = "rgba(234,242,255,.52)";
-  ctx.font = "700 10px system-ui";
+  ctx.font = "800 10px system-ui";
   for(let n=1;n<=100;n++){
     const {row,col} = squareToRC(n);
     const x = bx + col*cell + 6;
@@ -738,51 +614,34 @@ function drawBoard(){
     ctx.fillText(String(n), x, y);
   }
 
-  ctx.restore();
+  // ladders/snakes (STABLE, no random per frame)
+  for(const link of LINKS){
+    const a = centerOfSquare(link.from);
+    const b = centerOfSquare(link.to);
 
-  // draw ladders/snakes
-  drawLinks();
-}
-
-function drawLinks(){
-  // Ladders as bright segments, snakes as curved segments
-  for(const [kStr, v] of Object.entries(JUMPS)){
-    const from = Number(kStr);
-    const to = v;
-    const a = centerOfSquare(from);
-    const b = centerOfSquare(to);
-
-    if(to > from){
-      // ladder
+    if(link.type==="ladder"){
       ctx.save();
       ctx.lineWidth = 7;
       ctx.strokeStyle = "rgba(52,211,153,.30)";
-      ctx.beginPath();
-      ctx.moveTo(a.x,a.y);
-      ctx.lineTo(b.x,b.y);
-      ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
 
-      // ladder rails
+      // rails
       ctx.lineWidth = 3;
       ctx.strokeStyle = "rgba(234,242,255,.30)";
-      const dx = b.x-a.x, dy = b.y-a.y;
-      const len = Math.hypot(dx,dy) || 1;
+      const dx = b.x-a.x, dy=b.y-a.y;
+      const len = Math.hypot(dx,dy)||1;
       const nx = -dy/len, ny = dx/len;
       ctx.beginPath();
-      ctx.moveTo(a.x+nx*8, a.y+ny*8);
-      ctx.lineTo(b.x+nx*8, b.y+ny*8);
-      ctx.moveTo(a.x-nx*8, a.y-ny*8);
-      ctx.lineTo(b.x-nx*8, b.y-ny*8);
+      ctx.moveTo(a.x+nx*8, a.y+ny*8); ctx.lineTo(b.x+nx*8, b.y+ny*8);
+      ctx.moveTo(a.x-nx*8, a.y-ny*8); ctx.lineTo(b.x-nx*8, b.y-ny*8);
       ctx.stroke();
 
       // rungs
       ctx.lineWidth = 2;
       ctx.strokeStyle = "rgba(93,214,255,.28)";
-      const steps = 6;
-      for(let i=1;i<steps;i++){
-        const t = i/steps;
-        const rx = a.x + dx*t;
-        const ry = a.y + dy*t;
+      for(let i=1;i<6;i++){
+        const t = i/6;
+        const rx = a.x + dx*t, ry = a.y + dy*t;
         ctx.beginPath();
         ctx.moveTo(rx+nx*7, ry+ny*7);
         ctx.lineTo(rx-nx*7, ry-ny*7);
@@ -790,18 +649,15 @@ function drawLinks(){
       }
       ctx.restore();
     } else {
-      // snake
       ctx.save();
       ctx.lineWidth = 6;
       ctx.strokeStyle = "rgba(251,113,133,.30)";
+      const midx = (a.x+b.x)/2 + link.wiggle;
+      const midy = (a.y+b.y)/2 - link.wiggle;
       ctx.beginPath();
-      const midx = (a.x+b.x)/2 + (Math.random()*18-9);
-      const midy = (a.y+b.y)/2 + (Math.random()*18-9);
       ctx.moveTo(a.x,a.y);
       ctx.quadraticCurveTo(midx, midy, b.x,b.y);
       ctx.stroke();
-
-      // snake highlight
       ctx.lineWidth = 2;
       ctx.strokeStyle = "rgba(234,242,255,.16)";
       ctx.beginPath();
@@ -816,63 +672,52 @@ function drawLinks(){
 function drawToken(player){
   const {x,y} = centerOfSquare(player.pos);
 
-  // trail (short)
-  player.trail.push({x,y,t:performance.now()});
+  // trail buffer
+  player.trail.push({x,y});
   if(player.trail.length>10) player.trail.shift();
 
-  // draw trail
   ctx.save();
   for(let i=0;i<player.trail.length;i++){
     const p = player.trail[i];
-    const alpha = (i+1)/player.trail.length * 0.20;
+    const alpha = (i+1)/player.trail.length * 0.18;
     ctx.globalAlpha = alpha;
     ctx.fillStyle = player.color;
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 10 - (player.trail.length-i)*0.6, 0, Math.PI*2);
+    ctx.arc(p.x,p.y,10-(player.trail.length-i)*0.6,0,Math.PI*2);
     ctx.fill();
   }
   ctx.restore();
 
-  // token
   ctx.save();
   ctx.shadowColor = "rgba(0,0,0,.40)";
   ctx.shadowBlur = 18;
   ctx.fillStyle = player.color;
-  ctx.beginPath();
-  ctx.arc(x,y,12,0,Math.PI*2);
-  ctx.fill();
+  ctx.beginPath(); ctx.arc(x,y,12,0,Math.PI*2); ctx.fill();
   ctx.shadowBlur = 0;
 
-  // ring
   ctx.strokeStyle = "rgba(234,242,255,.65)";
   ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.arc(x,y,12,0,Math.PI*2);
-  ctx.stroke();
+  ctx.beginPath(); ctx.arc(x,y,12,0,Math.PI*2); ctx.stroke();
 
-  // label
   ctx.fillStyle = "rgba(0,0,0,.35)";
-  ctx.font = "900 10px system-ui";
-  ctx.fillText(player.name==="Learner" ? "L" : "C", x-3.5, y+3.5);
-
+  ctx.font = "1000 10px system-ui";
+  ctx.fillText(player.name==="Learner"?"L":"C", x-3.5, y+3.5);
   ctx.restore();
 }
 
 function drawParticles(){
   ctx.save();
   for(const p of particles){
-    const life = 1 - (p.t / p.life);
+    const life = 1 - (p.t/p.life);
+    if(life<=0) continue;
     if(p.kind==="spark"){
-      ctx.globalAlpha = Math.max(0, life);
+      ctx.globalAlpha = life;
       ctx.fillStyle = "rgba(251,191,36,.95)";
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, 2.2, 0, Math.PI*2);
-      ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x,p.y,2.2,0,Math.PI*2); ctx.fill();
     } else {
-      ctx.globalAlpha = Math.max(0, life);
-      // confetti tiny rectangles (random colors chosen at draw time but stable-ish)
+      ctx.globalAlpha = life;
       const hue = (p.x*2 + p.y*3) % 360;
-      ctx.fillStyle = `hsla(${hue}, 85%, 65%, ${Math.max(0,life)})`;
+      ctx.fillStyle = `hsla(${hue}, 85%, 65%, ${life})`;
       ctx.save();
       ctx.translate(p.x,p.y);
       ctx.rotate((p.x+p.y)*0.01);
@@ -886,18 +731,16 @@ function drawParticles(){
 function render(){
   drawBoard();
   drawParticles();
-  // tokens
   drawToken(state.players[0]);
   drawToken(state.players[1]);
 }
 
 /* =========================
-   Dice animation
+   Dice + Movement
    ========================= */
 async function rollDiceAnimated(){
   diceBox.classList.add("rolling");
-  const spins = 10;
-  for(let i=0;i<spins;i++){
+  for(let i=0;i<10;i++){
     diceFace.textContent = String(randInt(1,6));
     await sleep(60);
   }
@@ -908,174 +751,138 @@ async function rollDiceAnimated(){
   return val;
 }
 
-/* =========================
-   Movement animation (step-by-step)
-   ========================= */
-async function animateSteps(player, from, to, stepDelay=150){
-  if(to === from) return;
-  const dir = (to>from)?1:-1;
-  let p = from;
-  while(p !== to){
-    p += dir;
-    player.pos = p;
-    if(SAFE_SQUARES.has(p)) addSpark(centerOfSquare(p).x, centerOfSquare(p).y, 10);
-    await sleep(stepDelay);
-  }
-}
-
-async function animateJump(player, from, to, type){
-  const delay = type==="ladder" ? 110 : 130;
-  await animateSteps(player, from, to, delay);
-}
-
-/* =========================
-   Question selection (avoid repeating until exhausted)
-   ========================= */
-function pickQuestion(){
-  // try to avoid repeats
-  const available = QUESTION_BANK.filter(q => !state.usedQ.has(q.id));
-  const pool = available.length ? available : QUESTION_BANK;
-  const q = pool[randInt(0, pool.length-1)];
-  state.usedQ.add(q.id);
-  return q;
-}
-
-/* =========================
-   MCQ UI (flip screen)
-   ========================= */
-function openMCQ({playerName, contextLabel, badgeLabel}){
-  mcqPlayer.textContent = "Player: " + playerName;
-  mcqBadge.textContent = badgeLabel;
-  feedback.textContent = "";
-  choices.innerHTML = "";
-  btnCloseMCQ.style.display = "none";
-  mcqScreen.classList.add("show");
-  mcqCard.classList.remove("shake");
-}
-
-function closeMCQ(){
-  mcqScreen.classList.remove("show");
-}
-
-async function askMCQ({playerIndex, context}){
-  const player = state.players[playerIndex];
-  const q = pickQuestion();
-  state.total += 1;
-  sTotal.textContent = String(state.total);
-
-  const badgeLabel =
-    context.type==="ladder" ? "Ladder Bonus MCQ" :
-    context.type==="snake"  ? "Snake Save MCQ" :
-    "MCQ";
-
-  openMCQ({playerName: player.name, contextLabel: context.type, badgeLabel});
-  qtext.textContent = q.q;
-
-  // build options
-  let resolved = false;
-  let resolveFn;
-  const promise = new Promise(r => resolveFn = r);
-
-  const letters = ["A","B","C","D"];
-  q.a.forEach((txt, idx)=>{
-    const btn = document.createElement("button");
-    btn.className = "choice";
-    btn.innerHTML = `<b>${letters[idx]}.</b> ${txt}`;
-    btn.addEventListener("click", async ()=>{
-      if(resolved) return;
-      resolved = true;
-
-      // lock all
-      [...choices.querySelectorAll("button")].forEach(b=>b.disabled = true);
-
-      const correct = (idx === q.correct);
-      if(correct){
-        btn.classList.add("correct");
-        state.correct += 1;
-        sCorrect.textContent = String(state.correct);
-        showBig("Correct!", true);
-      }else{
-        btn.classList.add("wrong");
-        // highlight correct
-        const correctBtn = choices.querySelectorAll("button")[q.correct];
-        if(correctBtn) correctBtn.classList.add("correct");
-        showBig("Wrong!", false);
-        mcqCard.classList.add("shake");
-      }
-
-      feedback.textContent = q.fb;
-
-      // short visible pause, then close
-      await sleep(900);
-      btnCloseMCQ.style.display = "inline-block";
-      btnCloseMCQ.disabled = false;
-
-      // auto continue after a small extra delay (so mobile users can read)
-      await sleep(600);
-      btnCloseMCQ.style.display = "none";
-      closeMCQ();
-      resolveFn(correct);
-    });
-    choices.appendChild(btn);
-  });
-
-  // Computer: we still show the MCQ briefly (for transparency) but auto-answers
-  if(player.name === "Computer"){
-    // disable click to avoid confusion
-    [...choices.querySelectorAll("button")].forEach(b=>b.disabled = true);
-    await sleep(650);
-
-    const willBeCorrect = Math.random() < state.computerAccuracy;
-    const chosen = willBeCorrect ? q.correct : pickWrongIndex(q.correct);
-    const btns = [...choices.querySelectorAll("button")];
-
-    btns[chosen].classList.add(willBeCorrect ? "correct" : "wrong");
-    btns[q.correct].classList.add("correct");
-
-    if(willBeCorrect){
-      state.correct += 1;
-      sCorrect.textContent = String(state.correct);
-      showBig("Computer: Correct!", true);
-    }else{
-      showBig("Computer: Wrong!", false);
-      mcqCard.classList.add("shake");
-    }
-
-    feedback.textContent = q.fb;
-
-    await sleep(900);
-    closeMCQ();
-    resolveFn(willBeCorrect);
-  }
-
-  return promise;
-}
-
-function pickWrongIndex(correctIdx){
-  const picks = [0,1,2,3].filter(i=>i!==correctIdx);
-  return picks[randInt(0,picks.length-1)];
-}
-
-/* =========================
-   Special square logic
-   ========================= */
 function getJump(pos){
   const to = JUMPS[pos];
   if(!to) return null;
   return {to, type: to>pos ? "ladder" : "snake"};
 }
 
+async function animateSteps(player, from, to, delay=145){
+  if(from===to) return;
+  const dir = to>from ? 1 : -1;
+  let p = from;
+  while(p!==to){
+    p += dir;
+    player.pos = p;
+    if(SAFE_SQUARES.has(p)){
+      const c = centerOfSquare(p);
+      addSpark(c.x,c.y,10);
+      startRenderLoop();
+    }
+    render();
+    await sleep(delay);
+  }
+}
+
+async function animateJump(player, from, to, type){
+  const d = (type==="ladder") ? 105 : 135;
+  await animateSteps(player, from, to, d);
+}
+
 /* =========================
-   Turn engine
+   MCQ (every turn)
+   ========================= */
+async function askTurnMCQ(playerIndex){
+  const player = state.players[playerIndex];
+
+  // show MCQ screen (two-screen flip)
+  openMCQScreen(player.name);
+  await sleep(180); // small delay so flip feels intentional
+
+  const q = pickQuestion();
+  state.total += 1;
+  sTotal.textContent = String(state.total);
+  qtext.textContent = q.q;
+
+  const letters = ["A","B","C","D"];
+  let resolved = false;
+  let resolveFn;
+  const promise = new Promise(r => resolveFn = r);
+
+  // render options
+  q.a.forEach((txt, idx)=>{
+    const b = document.createElement("button");
+    b.className = "choice";
+    b.innerHTML = `<b>${letters[idx]}.</b> ${txt}`;
+    b.onclick = async ()=>{
+      if(resolved) return;
+      resolved = true;
+
+      [...choices.querySelectorAll("button")].forEach(x=>x.disabled=true);
+
+      const correct = (idx===q.correct);
+      if(correct){
+        b.classList.add("correct");
+        state.correct += 1;
+        sCorrect.textContent = String(state.correct);
+        showBig("Correct!", true);
+      }else{
+        b.classList.add("wrong");
+        const corrBtn = choices.querySelectorAll("button")[q.correct];
+        if(corrBtn) corrBtn.classList.add("correct");
+        showBig("Wrong!", false);
+        mcqCard.classList.add("shake");
+      }
+
+      feedback.textContent = q.fb;
+
+      // deliberate reading time
+      await sleep(950);
+
+      btnContinue.style.display = "inline-block";
+      btnContinue.onclick = ()=>{
+        btnContinue.style.display = "none";
+        closeMCQScreen();
+        resolveFn(correct);
+      };
+
+      // auto close after extra delay (still gives time on phone)
+      await sleep(650);
+      if(mcqScreen.classList.contains("show")){
+        btnContinue.style.display = "none";
+        closeMCQScreen();
+        resolveFn(correct);
+      }
+    };
+    choices.appendChild(b);
+  });
+
+  // computer auto-answer but still shows MCQ screen briefly
+  if(player.name==="Computer"){
+    [...choices.querySelectorAll("button")].forEach(x=>x.disabled=true);
+    await sleep(650);
+
+    const willBeCorrect = Math.random() < state.computerAccuracy;
+    const chosen = willBeCorrect ? q.correct : pickWrongIndex(q.correct);
+    const btns = [...choices.querySelectorAll("button")];
+    btns[chosen].classList.add(willBeCorrect ? "correct" : "wrong");
+    btns[q.correct].classList.add("correct");
+
+    if(willBeCorrect){
+      state.correct += 1; sCorrect.textContent = String(state.correct);
+      showBig("Computer: Correct!", true);
+    }else{
+      showBig("Computer: Wrong!", false);
+      mcqCard.classList.add("shake");
+    }
+    feedback.textContent = q.fb;
+
+    await sleep(950);
+    closeMCQScreen();
+    resolveFn(willBeCorrect);
+  }
+
+  return promise;
+}
+
+/* =========================
+   Turn Engine (MCQ -> Board -> Dice -> Move -> Special)
    ========================= */
 function updateHUD(){
-  sLearner.textContent = String(state.players[0].pos);
-  sComp.textContent = String(state.players[1].pos);
-  lastMove.textContent = state.lastMove;
-  lastSpecial.textContent = state.lastSpecial;
-  lastCtx.textContent = state.lastCtx;
+  pLearner.textContent = String(state.players[0].pos);
+  pComp.textContent = String(state.players[1].pos);
   turnTag.innerHTML = `<b>Turn:</b> ${state.players[state.turn].name}`;
-  btnRoll.disabled = state.busy || state.players[state.turn].name !== "Learner";
+  btnRoll.disabled = state.busy || state.players[state.turn].name!=="Learner";
 }
 
 async function takeTurn(){
@@ -1083,80 +890,79 @@ async function takeTurn(){
   state.busy = true;
   updateHUD();
 
-  const playerIndex = state.turn;
-  const player = state.players[playerIndex];
+  const i = state.turn;
+  const player = state.players[i];
 
-  // Roll dice (human: button already pressed; computer: auto)
+  lastAction.textContent = "MCQ…";
+  lastSpecial.textContent = "—";
+  lastMCQ.textContent = "—";
+
+  // 1) MCQ screen
+  const mcqCorrect = await askTurnMCQ(i);
+  state.turnMCQCorrect = mcqCorrect;
+  lastMCQ.textContent = mcqCorrect ? "Correct" : "Wrong";
+
+  // 2) back to board, deliberate delay
+  await sleep(300);
+
+  // 3) roll + animate dice
   const dice = await rollDiceAnimated();
+  showToast(`${player.name} rolled ${dice}`);
+  lastAction.textContent = `${player.name}: dice ${dice}`;
 
+  // 4) tentative move (exact finish)
   const start = player.pos;
   let tentative = start + dice;
-
-  if(state.exactFinish && tentative > 100){
+  if(state.exactFinish && tentative>100){
     tentative = start;
     showToast("Exact 100 needed. No move.");
-  } else {
-    showToast(`${player.name} rolled ${dice}`);
   }
 
-  state.lastCtx = "Dice move";
-  state.lastMove = `${player.name}: ${start} → ${tentative} (dice ${dice})`;
-  state.lastSpecial = "—";
-  updateHUD();
+  // 5) step-by-step move
+  await sleep(220);
+  await animateSteps(player, start, tentative, 145);
 
-  // animate movement on board
-  await sleep(250);
-  await animateSteps(player, start, tentative, 150);
-  await sleep(450);
-
-  // check special
+  // 6) special square resolution based on THIS TURN’S MCQ
   const landed = player.pos;
   const jump = getJump(landed);
 
   if(jump){
-    const isLadder = jump.type==="ladder";
-    state.lastSpecial = isLadder ? `Ladder at ${landed} → ${jump.to}` : `Snake at ${landed} → ${jump.to}`;
-    state.lastCtx = isLadder ? "Ladder bonus MCQ" : "Snake save MCQ";
-    updateHUD();
+    const type = jump.type;
+    const dest = jump.to;
 
-    // flip to MCQ screen
-    await sleep(450);
-    const correct = await askMCQ({
-      playerIndex,
-      context: {type: jump.type, from: landed, to: jump.to}
-    });
-
-    // back to board, then apply result
-    await sleep(250);
-
-    if(isLadder){
-      if(correct){
-        showToast("Correct! Climb the ladder.");
-        await sleep(300);
-        await animateJump(player, landed, jump.to, "ladder");
-      }else{
-        showToast("Wrong. No ladder ride.");
+    if(type==="ladder"){
+      if(mcqCorrect){
+        lastSpecial.textContent = `Ladder ${landed} → ${dest}`;
+        showToast("Correct turn! Ladder ride.");
+        await sleep(350);
+        await animateJump(player, landed, dest, "ladder");
+      } else {
+        lastSpecial.textContent = `Ladder at ${landed} (blocked)`;
+        showToast("Wrong turn. Ladder blocked.");
+        await sleep(350);
       }
-    }else{
-      if(correct){
-        showToast("Correct! You avoided the snake bite.");
-      }else{
-        showToast("Wrong! Snake bite… sliding down.");
-        // tiny screen shake for the board container
+    } else {
+      if(mcqCorrect){
+        lastSpecial.textContent = `Snake at ${landed} (avoided)`;
+        showToast("Correct turn! Snake avoided.");
+        await sleep(350);
+      } else {
+        lastSpecial.textContent = `Snake ${landed} → ${dest}`;
+        showToast("Wrong turn! Snake bite.");
         holder.classList.add("shake");
         setTimeout(()=>holder.classList.remove("shake"), 260);
-        await sleep(300);
-        await animateJump(player, landed, jump.to, "snake");
+        await sleep(350);
+        await animateJump(player, landed, dest, "snake");
       }
     }
-    await sleep(450);
   }
 
-  // win check
-  if(player.pos === 100){
+  // 7) win
+  if(player.pos===100){
     showToast(`${player.name} reached HOME!`);
-    const {x,y} = centerOfSquare(100);
-    addConfetti(x,y, 120);
+    const c = centerOfSquare(100);
+    addConfetti(c.x,c.y,120);
+    startRenderLoop();
     await sleep(900);
     alert(`${player.name} wins!`);
     state.busy = false;
@@ -1164,13 +970,17 @@ async function takeTurn(){
     return;
   }
 
-  // switch turn
-  state.turn = (state.turn+1)%2;
+  // End turn
   state.busy = false;
   updateHUD();
+  startRenderLoop();
 
-  // Computer auto turn with a pleasant delay
-  if(state.players[state.turn].name === "Computer"){
+  // Switch turn
+  state.turn = (state.turn+1)%2;
+  updateHUD();
+
+  // computer auto
+  if(state.players[state.turn].name==="Computer"){
     await sleep(650);
     takeTurn();
   }
@@ -1179,30 +989,26 @@ async function takeTurn(){
 /* =========================
    Buttons
    ========================= */
-btnRoll.addEventListener("click", async ()=>{
-  if(state.busy) return;
-  if(state.players[state.turn].name !== "Learner") return;
+btnRoll.addEventListener("click", ()=>{
+  if(state.players[state.turn].name!=="Learner") return;
   takeTurn();
 });
 
 btnReset.addEventListener("click", ()=>{
-  state.players[0].pos = 1; state.players[1].pos = 1;
-  state.players[0].trail = []; state.players[1].trail = [];
-  state.turn = 0;
-  state.busy = false;
-  state.lastMove = "—";
-  state.lastSpecial = "—";
-  state.lastCtx = "—";
-  state.correct = 0;
-  state.total = 0;
+  state.players[0].pos=1; state.players[1].pos=1;
+  state.players[0].trail=[]; state.players[1].trail=[];
+  state.turn=0;
+  state.busy=false;
   state.usedQ.clear();
-  diceFace.textContent = "—";
-  particles.length = 0;
-  sCorrect.textContent = "0";
-  sTotal.textContent = "0";
-  updateHUD();
-  render();
+  state.correct=0; state.total=0;
+  state.turnMCQCorrect=null;
+  diceFace.textContent="—";
+  particles.length=0;
+  sCorrect.textContent="0"; sTotal.textContent="0";
+  lastAction.textContent="—"; lastSpecial.textContent="—"; lastMCQ.textContent="—";
   showToast("Reset done. Learner starts.");
+  render();
+  updateHUD();
 });
 
 /* =========================
@@ -1212,8 +1018,7 @@ function init(){
   resize();
   updateHUD();
   render();
-  showToast("Tap Roll Dice to start.");
-  requestAnimationFrame(tick);
+  showToast("Tap Start Turn.");
 }
 init();
 </script>
