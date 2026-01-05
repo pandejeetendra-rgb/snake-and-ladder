@@ -8,7 +8,6 @@
   :root{
     --bg1:#070A12;
     --bg2:#0B1631;
-    --card:#0f1d3cdd;
     --ink:#eaf2ff;
     --muted:#b7c6e6;
     --accent:#5dd6ff;
@@ -16,7 +15,6 @@
     --good:#34d399;
     --bad:#fb7185;
     --warn:#fbbf24;
-    --line:#21335e;
     --shadow: 0 18px 50px rgba(0,0,0,.45);
   }
   *{box-sizing:border-box}
@@ -61,7 +59,7 @@
     color:var(--ink);background:linear-gradient(180deg, rgba(93,214,255,.22), rgba(93,214,255,.08));
     border:1px solid rgba(93,214,255,.35);
     box-shadow:0 10px 26px rgba(93,214,255,.12);
-    cursor:pointer;font-weight:800;letter-spacing:.2px;
+    cursor:pointer;font-weight:900;letter-spacing:.2px;
   }
   .btn:disabled{opacity:.5;cursor:not-allowed}
   .btn.secondary{
@@ -83,7 +81,7 @@
     overflow:hidden;
   }
 
-  /* === GAME VIEW === */
+  /* GAME VIEW */
   .boardWrap{padding:10px;display:flex;flex-direction:column;gap:10px;}
   .boardTop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
   .turnTag{
@@ -101,7 +99,7 @@
     display:grid;place-items:center;
     box-shadow:0 12px 30px rgba(0,0,0,.25);
   }
-  .dice .face{font-weight:1000;font-size:22px;color:var(--ink);text-shadow:0 8px 18px rgba(0,0,0,.35);}
+  .dice .face{font-weight:1100;font-size:22px;color:var(--ink);text-shadow:0 8px 18px rgba(0,0,0,.35);}
   .dice.rolling{animation:diceRoll .85s ease-in-out;}
   @keyframes diceRoll{
     0%{transform:rotate(0deg) scale(1)}
@@ -111,7 +109,6 @@
     100%{transform:rotate(0deg) scale(1)}
   }
 
-  /* A square board area that fits phones */
   .canvasHolder{
     position:relative;border-radius:16px;overflow:hidden;
     border:1px solid rgba(255,255,255,.08);
@@ -126,15 +123,15 @@
     position:absolute;left:50%;top:14px;transform:translateX(-50%);
     padding:10px 14px;border-radius:999px;
     background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.14);
-    color:var(--ink);font-weight:900;font-size:13px;
+    color:var(--ink);font-weight:1000;font-size:13px;
     box-shadow:0 14px 35px rgba(0,0,0,.35);
     opacity:0;pointer-events:none;
   }
-  .overlayToast.show{animation:toastPop .85s ease forwards;}
+  .overlayToast.show{animation:toastPop .95s ease forwards;}
   @keyframes toastPop{
     0%{opacity:0;transform:translateX(-50%) translateY(-8px) scale(.96)}
     25%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
-    80%{opacity:1}
+    82%{opacity:1}
     100%{opacity:0;transform:translateX(-50%) translateY(-6px) scale(.98)}
   }
 
@@ -151,11 +148,11 @@
   .row b{color:var(--ink)}
   .tiny{font-size:11px;color:rgba(234,242,255,.75);line-height:1.35}
   .kbd{
-    font-weight:900;color:var(--ink);
+    font-weight:1000;color:var(--ink);
     padding:1px 7px;border-radius:8px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);
   }
 
-  /* === TWO SCREEN FLIP (MCQ VIEW) === */
+  /* TWO SCREEN MCQ */
   .screen{
     position:fixed;inset:0;display:none;align-items:center;justify-content:center;
     padding:14px;z-index:100;
@@ -163,17 +160,17 @@
   }
   .screen.show{display:flex}
   .mcqCard{
-    width:min(900px,100%); border-radius:20px; padding:14px;
+    width:min(920px,100%); border-radius:20px; padding:14px;
     border:1px solid rgba(255,255,255,.12);
     background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.25));
     box-shadow:0 22px 70px rgba(0,0,0,.55);
   }
   .mcqHead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap}
   .badge{
-    padding:6px 10px;border-radius:999px;font-size:12px;font-weight:1000;
+    padding:6px 10px;border-radius:999px;font-size:12px;font-weight:1100;
     border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.25);color:var(--muted);
   }
-  .qtext{margin:10px 0 10px;font-size:16px;font-weight:1000;line-height:1.25;}
+  .qtext{margin:10px 0 10px;font-size:16px;font-weight:1100;line-height:1.25;}
   .choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   @media (max-width: 700px){ .choices{grid-template-columns:1fr} .qtext{font-size:15px} }
   .choice{
@@ -181,7 +178,7 @@
     padding:12px;border-radius:16px;
     border:1px solid rgba(255,255,255,.12);
     background:rgba(0,0,0,.22);
-    color:var(--ink);font-weight:900;font-size:13px;
+    color:var(--ink);font-weight:1000;font-size:13px;
     transition:transform .12s ease, border-color .12s ease, background .12s ease;
   }
   .choice:hover{transform:translateY(-1px);border-color:rgba(93,214,255,.35);background:rgba(93,214,255,.08)}
@@ -195,7 +192,7 @@
   }
   .bigPop.show{display:flex;animation:popIn .55s ease forwards;}
   .bigPop .msg{
-    padding:18px 22px;border-radius:22px;font-weight:1100;font-size:34px;
+    padding:18px 22px;border-radius:22px;font-weight:1200;font-size:34px;
     border:1px solid rgba(255,255,255,.14);
     background:rgba(0,0,0,.45);
     box-shadow:0 22px 70px rgba(0,0,0,.55);
@@ -206,7 +203,6 @@
     25%{opacity:1;transform:scale(1)}
     100%{opacity:0;transform:scale(.98)}
   }
-
   .shake{animation:shake .25s ease-in-out}
   @keyframes shake{
     0%{transform:translateX(0)}
@@ -224,7 +220,7 @@
       <div class="logo" aria-hidden="true"></div>
       <div class="title">
         <b>Saap-Seedi GBL (Learner vs Computer)</b>
-        <span>Two-screen: MCQ → Board → Animation</span>
+        <span>Slower flip + readable Computer MCQ + large question bank</span>
       </div>
     </div>
     <div class="hud">
@@ -256,8 +252,8 @@
         <h3>Rules</h3>
         <div class="tiny rows">
           <div class="row"><span><span class="kbd">Every turn</span></span><b>1 MCQ</b></div>
-          <div class="row"><span>Correct MCQ</span><b>Roll + climb ladders + avoid snakes</b></div>
-          <div class="row"><span>Wrong MCQ</span><b>Roll still happens, but ladders disabled and snakes bite</b></div>
+          <div class="row"><span>Correct MCQ</span><b>Climb ladders + avoid snakes</b></div>
+          <div class="row"><span>Wrong MCQ</span><b>Ladders blocked + snakes bite</b></div>
           <div class="row"><span>Finish rule</span><b>Exact 100</b></div>
         </div>
       </div>
@@ -268,6 +264,7 @@
           <div class="row"><span>Last action</span><b id="lastAction">—</b></div>
           <div class="row"><span>Special</span><b id="lastSpecial">—</b></div>
           <div class="row"><span>MCQ result</span><b id="lastMCQ">—</b></div>
+          <div class="row"><span>Question</span><b id="qCount">0 / 0</b></div>
         </div>
       </div>
 
@@ -275,6 +272,7 @@
         <h3>Computer</h3>
         <div class="tiny rows">
           <div class="row"><span>Accuracy</span><b id="accTxt">65%</b></div>
+          <div class="row"><span>MCQ visible time</span><b>Long</b></div>
         </div>
       </div>
     </aside>
@@ -302,85 +300,339 @@
 
 <script>
 /* =========================
-   NOTE (important honesty):
-   These MCQs are currently hardcoded based on common “Cyber Security Techniques”
-   concepts (auth, encryption, digital signatures, firewall, steganography).
-   If you want them extracted strictly from your DOCX wording, tell me and I will
-   regenerate the bank after parsing your file.
+   TIMING (tune here)
    ========================= */
+const TIMING = {
+  // screen flip feel
+  flipIntoMCQ: 550,          // before MCQ becomes "interactive"
+  flipBackToBoard: 650,      // after MCQ closes, before dice starts
 
+  // learner reading times
+  learnerFeedbackHold: 1700, // after answering, keep feedback visible
+  learnerAutoCloseExtra: 1200, // additional time before auto-close (still shows Continue briefly)
+
+  // computer readability
+  computerReadBeforeAnswer: 1800, // keep question visible before computer answers
+  computerFeedbackHold: 1700,     // keep feedback visible after computer answer
+
+  // pacing between steps
+  afterDiceRollPause: 320,
+  afterMovePause: 520,
+  betweenTurnsPause: 900,
+
+  // movement speed
+  stepDelay: 155,
+  ladderStepDelay: 120,
+  snakeStepDelay: 150
+};
+
+/* =========================
+   QUESTION BANK (40 items)
+   Based on chapter: Authentication, Encryption, Digital Signatures,
+   Antivirus, Firewall + types, Software/Hardware firewalls, Steganography
+   ========================= */
 const QUESTION_BANK = [
-  {id:"Q1", q:"Authentication is primarily the process of:", a:[
-    "Granting permissions to resources",
-    "Identifying a user and verifying they are who they claim to be",
-    "Encrypting data before sending",
-    "Scanning for viruses"
-  ], correct:1, fb:"Authentication verifies identity (password/OTP/biometrics)."},
-  {id:"Q2", q:"OTP stands for:", a:[
-    "One Time Password",
-    "Open Transfer Protocol",
-    "Online Trusted Password",
-    "One Token Process"
-  ], correct:0, fb:"OTP is valid for one-time use."},
-  {id:"Q3", q:"Authorization refers to:", a:[
-    "Verifying who a user is",
-    "Converting plaintext into ciphertext",
-    "Giving access to resources based on rights/roles",
-    "Detecting malware"
-  ], correct:2, fb:"Authorization is access control after authentication."},
-  {id:"Q4", q:"Encryption is best described as:", a:[
-    "Hiding messages inside images only",
-    "Converting data into unreadable form using a key and algorithm",
-    "Blocking network ports",
-    "Validating a document’s format"
-  ], correct:1, fb:"Encryption protects confidentiality; decryption reverses it."},
-  {id:"Q5", q:"If the same key is used to encrypt and decrypt, it is called:", a:[
+  // Authentication (8)
+  {id:"Q01", q:"Authentication is mainly used to:", a:[
+    "Decide user permissions only",
+    "Identify and verify a user’s identity",
+    "Convert plaintext to ciphertext",
+    "Detect trojans in a file"
+  ], correct:1, fb:"Authentication verifies identity (who you are)."},
+  {id:"Q02", q:"A common authentication pair mentioned in practice is:", a:[
+    "Username and password",
+    "IP address and MAC address",
+    "Firewall and antivirus",
+    "Ciphertext and plaintext"
+  ], correct:0, fb:"Username and password are basic identity checks."},
+  {id:"Q03", q:"OTP is commonly used along with username/password as:", a:[
+    "A second factor",
+    "A firewall rule",
+    "A hashing algorithm",
+    "A malware type"
+  ], correct:0, fb:"OTP is an extra verification step (2FA style)."},
+  {id:"Q04", q:"Authentication is especially important when users connect:", a:[
+    "Only inside the office LAN",
+    "Over internet to the company network (remote access)",
+    "Only on offline systems",
+    "Only for image files"
+  ], correct:1, fb:"Remote access increases risk; authentication becomes more critical."},
+  {id:"Q05", q:"Which of these is an example of an authentication method?", a:[
+    "Packet filtering",
+    "Digital watermarking",
+    "Biometrics",
+    "Network Address Translation"
+  ], correct:2, fb:"Biometrics verifies identity using physical traits."},
+  {id:"Q06", q:"Authentication focuses on:", a:[
+    "Who the user is",
+    "What the user can access",
+    "How data is compressed",
+    "How packets are routed"
+  ], correct:0, fb:"Authorization decides access; authentication confirms identity."},
+  {id:"Q07", q:"Two-factor authentication means:", a:[
+    "Two passwords",
+    "Two different categories of identity evidence",
+    "Two routers",
+    "Two encryption keys"
+  ], correct:1, fb:"Example: password + OTP/biometric."},
+  {id:"Q08", q:"In security, authentication is best seen as a control to reduce:", a:[
+    "Unauthorized access",
+    "Image size",
+    "Network speed",
+    "Keyboard errors"
+  ], correct:0, fb:"It blocks access unless identity is verified."},
+
+  // Encryption (9)
+  {id:"Q09", q:"Encryption is a technique to:", a:[
+    "Convert data into unreadable form",
+    "Block malware automatically",
+    "Hide a message inside an image",
+    "Detect open ports"
+  ], correct:0, fb:"Encryption converts readable data into coded form."},
+  {id:"Q10", q:"Decryption is:", a:[
+    "Converting unreadable data back to original data",
+    "Deleting suspicious files",
+    "Blocking incoming packets",
+    "Changing IP addresses"
+  ], correct:0, fb:"Decryption restores the original message using a key."},
+  {id:"Q11", q:"If the same key locks and unlocks data, it is:", a:[
     "Asymmetric encryption",
-    "Symmetric encryption",
-    "Public-only encryption",
-    "No-key encryption"
-  ], correct:1, fb:"Symmetric uses one shared secret key."},
-  {id:"Q6", q:"A digital signature is created using:", a:[
-    "Receiver’s public key",
-    "Sender’s private key",
-    "Receiver’s private key",
-    "Sender’s public key"
-  ], correct:1, fb:"Verification is done using sender’s public key."},
-  {id:"Q7", q:"A firewall is best described as:", a:[
-    "A tool to hide messages in images",
-    "A system that controls incoming/outgoing traffic using rules",
-    "A password manager only",
-    "A file compressor"
-  ], correct:1, fb:"Firewalls enforce network security policies."},
-  {id:"Q8", q:"Steganography is the technique of:", a:[
-    "Encrypting with public/private keys",
-    "Hiding secret data inside media so it’s not obvious",
-    "Dropping suspicious packets",
-    "Scanning hard disks for malware"
-  ], correct:1, fb:"Steganography hides the existence of the message."},
+    "Symmetric key encryption",
+    "No-key encryption",
+    "Steganography"
+  ], correct:1, fb:"Symmetric encryption uses one shared key."},
+  {id:"Q12", q:"In symmetric encryption, after coding the data, the key is:", a:[
+    "Shared with receiver securely to decrypt",
+    "Always stored publicly",
+    "Never required",
+    "Replaced by a firewall"
+  ], correct:0, fb:"Receiver needs the same key to decrypt."},
+  {id:"Q13", q:"Asymmetric encryption uses:", a:[
+    "One shared key only",
+    "Two keys (public and private)",
+    "No keys",
+    "Only passwords"
+  ], correct:1, fb:"Public/private key pair is used."},
+  {id:"Q14", q:"A correct statement about public/private key encryption is:", a:[
+    "Both keys must be identical",
+    "Public key is shared; private key is kept secret",
+    "Private key is shared publicly",
+    "Keys are not needed for decryption"
+  ], correct:1, fb:"Public key can be shared; private key must remain confidential."},
+  {id:"Q15", q:"Encryption mainly supports:", a:[
+    "Confidentiality",
+    "Screen brightness",
+    "Packet routing",
+    "Keyboard speed"
+  ], correct:0, fb:"Encryption protects data from being read by unauthorized parties."},
+  {id:"Q16", q:"One simple description of encryption is:", a:[
+    "Data locking using algorithm + key",
+    "Traffic filtering using rules",
+    "Hiding data by changing file extension",
+    "Scanning files for viruses"
+  ], correct:0, fb:"Encryption is like locking data; decryption unlocks it."},
+  {id:"Q17", q:"If a wrong key is used during decryption, the result is usually:", a:[
+    "Original readable message",
+    "Unreadable/garbled output",
+    "Automatic password reset",
+    "Firewall blocks the PC"
+  ], correct:1, fb:"Without the correct key, original data cannot be reconstructed correctly."},
+
+  // Digital Signatures (7)
+  {id:"Q18", q:"Digital signature is a technique mainly used for:", a:[
+    "Validation of data",
+    "Compression of audio",
+    "Port scanning",
+    "Changing IP addresses"
+  ], correct:0, fb:"It validates integrity and authenticity."},
+  {id:"Q19", q:"Validation in digital signature context means:", a:[
+    "Checking the data is original and not tampered",
+    "Making data unreadable",
+    "Hiding data inside images",
+    "Blocking network traffic"
+  ], correct:0, fb:"Validation checks if the data remains the same and genuine."},
+  {id:"Q20", q:"Digital signatures are especially useful because documents are often:", a:[
+    "Printed only",
+    "Transmitted over internet",
+    "Stored only on USB",
+    "Never shared"
+  ], correct:1, fb:"Internet transmission increases risk of alteration."},
+  {id:"Q21", q:"Digital signature helps prevent:", a:[
+    "Unpleasant situations due to tampering and disputes",
+    "Battery drain",
+    "Monitor flicker",
+    "Keyboard lag"
+  ], correct:0, fb:"It helps verify sender and content integrity."},
+  {id:"Q22", q:"For digital signature, which is required?", a:[
+    "Only receiver’s password",
+    "A technique that proves data is from original sender",
+    "Only NAT configuration",
+    "Only antivirus update"
+  ], correct:1, fb:"Signatures prove originality/authenticity."},
+  {id:"Q23", q:"Digital signatures primarily support integrity by:", a:[
+    "Allowing tampering without detection",
+    "Making changes detectable during verification",
+    "Blocking all network connections",
+    "Encrypting with the same key always"
+  ], correct:1, fb:"If altered, verification fails."},
+  {id:"Q24", q:"Digital signatures are used mainly when:", a:[
+    "You want hidden data inside files",
+    "You want data validation and authenticity",
+    "You want to filter packet headers",
+    "You want to remove worms"
+  ], correct:1, fb:"They validate both origin and integrity."},
+
+  // Antivirus (4)
+  {id:"Q25", q:"Antivirus software mainly protects against:", a:[
+    "Viruses, worms, trojans and other malicious programs",
+    "Only firewall bypass",
+    "Only password guessing",
+    "Only image steganography"
+  ], correct:0, fb:"Antivirus targets malicious code and malware families."},
+  {id:"Q26", q:"Antivirus needs frequent updates mainly because:", a:[
+    "New malware keeps appearing",
+    "Encryption keys expire daily",
+    "Routers stop working",
+    "NAT changes automatically"
+  ], correct:0, fb:"Updates give protection against newly discovered threats."},
+  {id:"Q27", q:"A main benefit of antivirus updates is to provide:", a:[
+    "Immunity against new viruses/worms etc.",
+    "Faster keyboard typing",
+    "More screen brightness",
+    "Higher internet speed"
+  ], correct:0, fb:"Updated signatures/heuristics improve detection and prevention."},
+  {id:"Q28", q:"Which list contains only malicious programs?", a:[
+    "Virus, worm, trojan",
+    "Firewall, NAT, proxy",
+    "OTP, username, password",
+    "Plaintext, ciphertext, key"
+  ], correct:0, fb:"Virus/worm/trojan are malware categories."},
+
+  // Firewall basics (6)
+  {id:"Q29", q:"A firewall is a system that:", a:[
+    "Monitors and controls network traffic using rules",
+    "Creates OTP codes",
+    "Only compresses files",
+    "Hides messages in images"
+  ], correct:0, fb:"Firewalls enforce traffic rules between networks."},
+  {id:"Q30", q:"A firewall’s job is to analyze data entering or leaving and:", a:[
+    "Forward or drop based on rules",
+    "Convert it to ciphertext always",
+    "Delete all files",
+    "Disable authentication"
+  ], correct:0, fb:"It allows or blocks based on policy."},
+  {id:"Q31", q:"Windows Firewall is described as:", a:[
+    "Hardware inside router only",
+    "Software that runs on your computer",
+    "A steganography tool",
+    "An antivirus update server"
+  ], correct:1, fb:"Windows Firewall is a software firewall on the machine."},
+  {id:"Q32", q:"Firewall provides protection mainly against:", a:[
+    "Attacks coming from outside world",
+    "Monitor flicker",
+    "Printer issues",
+    "Audio noise only"
+  ], correct:0, fb:"It reduces exposure to external network attacks."},
+  {id:"Q33", q:"A firewall intercepts:", a:[
+    "All network communication to/from computer (as per config)",
+    "Only keyboard input",
+    "Only mouse clicks",
+    "Only document formatting"
+  ], correct:0, fb:"It examines network traffic paths to the system."},
+  {id:"Q34", q:"Firewalls are important because they:", a:[
+    "Control unwanted access to a network",
+    "Replace encryption always",
+    "Replace antivirus always",
+    "Make passwords unnecessary"
+  ], correct:0, fb:"They enforce a barrier and policy control."},
+
+  // Types of firewalls + NAT/Proxy + software/hardware (6)
+  {id:"Q35", q:"Network layer firewalls are also called:", a:[
+    "Packet filters",
+    "Digital signers",
+    "OTP gateways",
+    "Stego tools"
+  ], correct:0, fb:"Network layer firewalls inspect packet headers."},
+  {id:"Q36", q:"Stateful firewall means it:", a:[
+    "Tracks the state of connections/sessions",
+    "Never checks packets",
+    "Works only for emails",
+    "Always blocks all traffic"
+  ], correct:0, fb:"Stateful filters consider session state for decisions."},
+  {id:"Q37", q:"Application-layer firewalls work on:", a:[
+    "Application data and app-level policies",
+    "Only physical cables",
+    "Only keyboard input",
+    "Only NAT tables"
+  ], correct:0, fb:"They filter based on application rules."},
+  {id:"Q38", q:"A proxy server in firewall context acts as:", a:[
+    "An interface on behalf of network user",
+    "A virus signature file",
+    "A private key store",
+    "A keyboard driver"
+  ], correct:0, fb:"Proxy can mediate requests and apply filtering."},
+  {id:"Q39", q:"Network Address Translation (NAT) in firewalls helps by:", a:[
+    "Hiding internal addresses and reducing public IP needs",
+    "Encrypting files",
+    "Removing trojans",
+    "Creating OTP"
+  ], correct:0, fb:"NAT maps private to public addresses and helps conceal internal network."},
+  {id:"Q40", q:"A key benefit of personal/software firewall is:", a:[
+    "It can identify risky applications trying network access",
+    "It replaces all passwords",
+    "It removes malware without antivirus",
+    "It encrypts all data automatically"
+  ], correct:0, fb:"It can block unsafe applications and alert about network attempts."},
+
+  // Steganography (4)
+  {id:"Q41", q:"Steganography is a technique of:", a:[
+    "Hiding secret messages inside files so they are not easily suspected",
+    "Converting data to ciphertext",
+    "Blocking packets in network",
+    "Generating digital signatures"
+  ], correct:0, fb:"Steganography hides the existence of the message."},
+  {id:"Q42", q:"A reason steganography works well is that cover files are:", a:[
+    "Not easily suspected",
+    "Always blocked by firewalls",
+    "Always encrypted already",
+    "Always very small"
+  ], correct:0, fb:"Images/audio/video are common and don’t raise suspicion easily."},
+  {id:"Q43", q:"In image steganography, a common technique is using:", a:[
+    "Least Significant Bits (LSB) of pixels",
+    "Most Significant Bits only",
+    "Only file name changes",
+    "Only changing resolution"
+  ], correct:0, fb:"LSB changes are subtle and harder to notice."},
+  {id:"Q44", q:"If each pixel has RGB and you can hide 1 bit in each color value, you can hide:", a:[
+    "3 bits per pixel",
+    "1 bit per pixel",
+    "8 bits per pixel always",
+    "No bits per pixel"
+  ], correct:0, fb:"1 bit in R + 1 bit in G + 1 bit in B = 3 bits per pixel."},
 ];
 
+/* =========================
+   Board mapping
+   ========================= */
 const JUMPS = {
   // Ladders
   3:22, 5:8, 11:26, 20:29, 27:56, 36:44, 51:67, 71:92, 80:99,
   // Snakes
   17:4, 19:7, 21:9, 43:34, 49:30, 62:18, 64:60, 87:24, 95:75, 98:79
 };
-
 const SAFE_SQUARES = new Set([1,25,50,75,100]);
 
 /* =========================
-   Precompute paths (fix flicker)
+   Precompute stable link shapes (no flicker)
    ========================= */
-const LINKS = []; // {from,to,type, ctrl?}
+const LINKS = [];
 (function buildLinks(){
   for(const [kStr,v] of Object.entries(JUMPS)){
     const from = Number(kStr);
     const to = v;
     const type = to > from ? "ladder" : "snake";
-    // Precompute a stable control point for snakes
     const seed = (from*97 + to*131) % 1000;
-    const wiggle = (seed/1000 - 0.5) * 36; // -18..18
+    const wiggle = (seed/1000 - 0.5) * 36;
     LINKS.push({from,to,type,wiggle});
   }
 })();
@@ -400,8 +652,7 @@ const state = {
   usedQ: new Set(),
   correct: 0,
   total: 0,
-  // per-turn MCQ result affects ladder/snake outcome
-  turnMCQCorrect: null,
+  turnMCQCorrect: null
 };
 
 /* =========================
@@ -426,6 +677,7 @@ const sTotal = document.getElementById("sTotal");
 const lastAction = document.getElementById("lastAction");
 const lastSpecial = document.getElementById("lastSpecial");
 const lastMCQ = document.getElementById("lastMCQ");
+const qCount = document.getElementById("qCount");
 document.getElementById("accTxt").textContent = Math.round(state.computerAccuracy*100) + "%";
 
 const toast = document.getElementById("toast");
@@ -463,7 +715,6 @@ function showBig(text, good=true){
   void bigPop.offsetWidth;
   bigPop.classList.add("show");
 }
-
 function openMCQScreen(playerName){
   mcqPlayer.textContent = "Player: " + playerName;
   feedback.textContent = "";
@@ -480,10 +731,15 @@ function pickWrongIndex(correctIdx){
   const picks = [0,1,2,3].filter(i=>i!==correctIdx);
   return picks[randInt(0,picks.length-1)];
 }
-function pickQuestion(){
-  const available = QUESTION_BANK.filter(q => !state.usedQ.has(q.id));
-  const pool = available.length ? available : QUESTION_BANK;
-  const q = pool[randInt(0, pool.length-1)];
+
+function pickQuestionNoRepeat(){
+  // no repeat until exhausted
+  let available = QUESTION_BANK.filter(q => !state.usedQ.has(q.id));
+  if(available.length === 0){
+    state.usedQ.clear();
+    available = QUESTION_BANK.slice();
+  }
+  const q = available[randInt(0, available.length-1)];
   state.usedQ.add(q.id);
   return q;
 }
@@ -503,7 +759,7 @@ function resize(){
   canvas.style.height = H+"px";
   ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
   cell = Math.floor((Math.min(W,H) - pad*2)/grid);
-  render(); // draw once after resize
+  render();
 }
 window.addEventListener("resize", resize);
 
@@ -547,7 +803,6 @@ function startRenderLoop(){
     const dt = now - lastFrame;
     lastFrame = now;
 
-    // update particles (only thing that needs continuous render)
     for(let i=particles.length-1;i>=0;i--){
       const p = particles[i];
       p.t += dt;
@@ -559,7 +814,6 @@ function startRenderLoop(){
 
     render();
 
-    // stop loop when no particles and not busy animating
     if(particles.length===0 && !state.busy){
       raf = null;
       return;
@@ -606,7 +860,7 @@ function drawBoard(){
   }
 
   ctx.fillStyle = "rgba(234,242,255,.52)";
-  ctx.font = "800 10px system-ui";
+  ctx.font = "900 10px system-ui";
   for(let n=1;n<=100;n++){
     const {row,col} = squareToRC(n);
     const x = bx + col*cell + 6;
@@ -614,7 +868,7 @@ function drawBoard(){
     ctx.fillText(String(n), x, y);
   }
 
-  // ladders/snakes (STABLE, no random per frame)
+  // ladders/snakes stable
   for(const link of LINKS){
     const a = centerOfSquare(link.from);
     const b = centerOfSquare(link.to);
@@ -625,7 +879,6 @@ function drawBoard(){
       ctx.strokeStyle = "rgba(52,211,153,.30)";
       ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
 
-      // rails
       ctx.lineWidth = 3;
       ctx.strokeStyle = "rgba(234,242,255,.30)";
       const dx = b.x-a.x, dy=b.y-a.y;
@@ -636,7 +889,6 @@ function drawBoard(){
       ctx.moveTo(a.x-nx*8, a.y-ny*8); ctx.lineTo(b.x-nx*8, b.y-ny*8);
       ctx.stroke();
 
-      // rungs
       ctx.lineWidth = 2;
       ctx.strokeStyle = "rgba(93,214,255,.28)";
       for(let i=1;i<6;i++){
@@ -658,6 +910,7 @@ function drawBoard(){
       ctx.moveTo(a.x,a.y);
       ctx.quadraticCurveTo(midx, midy, b.x,b.y);
       ctx.stroke();
+
       ctx.lineWidth = 2;
       ctx.strokeStyle = "rgba(234,242,255,.16)";
       ctx.beginPath();
@@ -671,8 +924,6 @@ function drawBoard(){
 
 function drawToken(player){
   const {x,y} = centerOfSquare(player.pos);
-
-  // trail buffer
   player.trail.push({x,y});
   if(player.trail.length>10) player.trail.shift();
 
@@ -700,7 +951,7 @@ function drawToken(player){
   ctx.beginPath(); ctx.arc(x,y,12,0,Math.PI*2); ctx.stroke();
 
   ctx.fillStyle = "rgba(0,0,0,.35)";
-  ctx.font = "1000 10px system-ui";
+  ctx.font = "1100 10px system-ui";
   ctx.fillText(player.name==="Learner"?"L":"C", x-3.5, y+3.5);
   ctx.restore();
 }
@@ -736,7 +987,7 @@ function render(){
 }
 
 /* =========================
-   Dice + Movement
+   Dice + movement
    ========================= */
 async function rollDiceAnimated(){
   diceBox.classList.add("rolling");
@@ -757,7 +1008,7 @@ function getJump(pos){
   return {to, type: to>pos ? "ladder" : "snake"};
 }
 
-async function animateSteps(player, from, to, delay=145){
+async function animateSteps(player, from, to, delay){
   if(from===to) return;
   const dir = to>from ? 1 : -1;
   let p = from;
@@ -775,23 +1026,26 @@ async function animateSteps(player, from, to, delay=145){
 }
 
 async function animateJump(player, from, to, type){
-  const d = (type==="ladder") ? 105 : 135;
+  const d = (type==="ladder") ? TIMING.ladderStepDelay : TIMING.snakeStepDelay;
   await animateSteps(player, from, to, d);
 }
 
 /* =========================
-   MCQ (every turn)
+   MCQ logic (slower + readable)
    ========================= */
 async function askTurnMCQ(playerIndex){
   const player = state.players[playerIndex];
 
-  // show MCQ screen (two-screen flip)
+  // Show MCQ screen
   openMCQScreen(player.name);
-  await sleep(180); // small delay so flip feels intentional
+  await sleep(TIMING.flipIntoMCQ);
 
-  const q = pickQuestion();
+  // Question selection
+  const q = pickQuestionNoRepeat();
   state.total += 1;
   sTotal.textContent = String(state.total);
+  qCount.textContent = `${state.usedQ.size} / ${QUESTION_BANK.length}`;
+
   qtext.textContent = q.q;
 
   const letters = ["A","B","C","D"];
@@ -799,7 +1053,7 @@ async function askTurnMCQ(playerIndex){
   let resolveFn;
   const promise = new Promise(r => resolveFn = r);
 
-  // render options
+  // Create options
   q.a.forEach((txt, idx)=>{
     const b = document.createElement("button");
     b.className = "choice";
@@ -826,9 +1080,10 @@ async function askTurnMCQ(playerIndex){
 
       feedback.textContent = q.fb;
 
-      // deliberate reading time
-      await sleep(950);
+      // hold for reading
+      await sleep(TIMING.learnerFeedbackHold);
 
+      // optional continue
       btnContinue.style.display = "inline-block";
       btnContinue.onclick = ()=>{
         btnContinue.style.display = "none";
@@ -836,8 +1091,8 @@ async function askTurnMCQ(playerIndex){
         resolveFn(correct);
       };
 
-      // auto close after extra delay (still gives time on phone)
-      await sleep(650);
+      // auto-close after extra time
+      await sleep(TIMING.learnerAutoCloseExtra);
       if(mcqScreen.classList.contains("show")){
         btnContinue.style.display = "none";
         closeMCQScreen();
@@ -847,10 +1102,12 @@ async function askTurnMCQ(playerIndex){
     choices.appendChild(b);
   });
 
-  // computer auto-answer but still shows MCQ screen briefly
+  // Computer: slower and readable
   if(player.name==="Computer"){
     [...choices.querySelectorAll("button")].forEach(x=>x.disabled=true);
-    await sleep(650);
+
+    // keep question visible before answer
+    await sleep(TIMING.computerReadBeforeAnswer);
 
     const willBeCorrect = Math.random() < state.computerAccuracy;
     const chosen = willBeCorrect ? q.correct : pickWrongIndex(q.correct);
@@ -867,7 +1124,9 @@ async function askTurnMCQ(playerIndex){
     }
     feedback.textContent = q.fb;
 
-    await sleep(950);
+    // keep feedback visible
+    await sleep(TIMING.computerFeedbackHold);
+
     closeMCQScreen();
     resolveFn(willBeCorrect);
   }
@@ -876,7 +1135,7 @@ async function askTurnMCQ(playerIndex){
 }
 
 /* =========================
-   Turn Engine (MCQ -> Board -> Dice -> Move -> Special)
+   Turn engine
    ========================= */
 function updateHUD(){
   pLearner.textContent = String(state.players[0].pos);
@@ -897,20 +1156,22 @@ async function takeTurn(){
   lastSpecial.textContent = "—";
   lastMCQ.textContent = "—";
 
-  // 1) MCQ screen
+  // 1) MCQ
   const mcqCorrect = await askTurnMCQ(i);
   state.turnMCQCorrect = mcqCorrect;
   lastMCQ.textContent = mcqCorrect ? "Correct" : "Wrong";
 
-  // 2) back to board, deliberate delay
-  await sleep(300);
+  // 2) Back to board pause
+  await sleep(TIMING.flipBackToBoard);
 
-  // 3) roll + animate dice
+  // 3) Dice
   const dice = await rollDiceAnimated();
   showToast(`${player.name} rolled ${dice}`);
   lastAction.textContent = `${player.name}: dice ${dice}`;
 
-  // 4) tentative move (exact finish)
+  await sleep(TIMING.afterDiceRollPause);
+
+  // 4) move
   const start = player.pos;
   let tentative = start + dice;
   if(state.exactFinish && tentative>100){
@@ -918,11 +1179,11 @@ async function takeTurn(){
     showToast("Exact 100 needed. No move.");
   }
 
-  // 5) step-by-step move
-  await sleep(220);
-  await animateSteps(player, start, tentative, 145);
+  await animateSteps(player, start, tentative, TIMING.stepDelay);
 
-  // 6) special square resolution based on THIS TURN’S MCQ
+  await sleep(TIMING.afterMovePause);
+
+  // 5) special square depends on MCQ correctness
   const landed = player.pos;
   const jump = getJump(landed);
 
@@ -934,30 +1195,30 @@ async function takeTurn(){
       if(mcqCorrect){
         lastSpecial.textContent = `Ladder ${landed} → ${dest}`;
         showToast("Correct turn! Ladder ride.");
-        await sleep(350);
+        await sleep(380);
         await animateJump(player, landed, dest, "ladder");
       } else {
         lastSpecial.textContent = `Ladder at ${landed} (blocked)`;
         showToast("Wrong turn. Ladder blocked.");
-        await sleep(350);
+        await sleep(420);
       }
     } else {
       if(mcqCorrect){
         lastSpecial.textContent = `Snake at ${landed} (avoided)`;
         showToast("Correct turn! Snake avoided.");
-        await sleep(350);
+        await sleep(420);
       } else {
         lastSpecial.textContent = `Snake ${landed} → ${dest}`;
         showToast("Wrong turn! Snake bite.");
         holder.classList.add("shake");
         setTimeout(()=>holder.classList.remove("shake"), 260);
-        await sleep(350);
+        await sleep(420);
         await animateJump(player, landed, dest, "snake");
       }
     }
   }
 
-  // 7) win
+  // 6) win
   if(player.pos===100){
     showToast(`${player.name} reached HOME!`);
     const c = centerOfSquare(100);
@@ -970,18 +1231,17 @@ async function takeTurn(){
     return;
   }
 
-  // End turn
   state.busy = false;
   updateHUD();
   startRenderLoop();
 
-  // Switch turn
+  // switch turn
   state.turn = (state.turn+1)%2;
   updateHUD();
 
   // computer auto
   if(state.players[state.turn].name==="Computer"){
-    await sleep(650);
+    await sleep(TIMING.betweenTurnsPause);
     takeTurn();
   }
 }
@@ -1006,10 +1266,30 @@ btnReset.addEventListener("click", ()=>{
   particles.length=0;
   sCorrect.textContent="0"; sTotal.textContent="0";
   lastAction.textContent="—"; lastSpecial.textContent="—"; lastMCQ.textContent="—";
+  qCount.textContent=`0 / ${QUESTION_BANK.length}`;
   showToast("Reset done. Learner starts.");
   render();
   updateHUD();
 });
+
+/* =========================
+   Geometry helpers
+   ========================= */
+function squareToRC(n){
+  const idx = n-1;
+  const rFromBottom = Math.floor(idx/10);
+  const row = 9 - rFromBottom;
+  const colInRow = idx % 10;
+  const isL2R = (rFromBottom % 2 === 0);
+  const col = isL2R ? colInRow : (9-colInRow);
+  return {row,col};
+}
+function centerOfSquare(n){
+  const {row,col} = squareToRC(n);
+  const x = pad + col*cell + cell/2;
+  const y = pad + row*cell + cell/2;
+  return {x,y};
+}
 
 /* =========================
    Init
@@ -1017,6 +1297,7 @@ btnReset.addEventListener("click", ()=>{
 function init(){
   resize();
   updateHUD();
+  qCount.textContent = `0 / ${QUESTION_BANK.length}`;
   render();
   showToast("Tap Start Turn.");
 }
